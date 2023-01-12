@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Color</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+  </head>
+  <body style="min-height: 100vh;">
+	<canvas id="canvas" style="border: 1px solid black;"></canvas>
+
+    <script>
+
+      function nice(input) {
+        return Math.floor(input/sqSize)*sqSize
+      }
+
+      var sqSize = 15;
+      var c = document.getElementById("canvas");
+      c.width = nice(document.body.clientWidth);
+      c.height = nice(document.body.clientHeight);
+
+      var width = c.width;
+      var height = c.height;
+      
+      var ctx = c.getContext("2d");
+      var x = 0
+      var y = 0
+      ctx.lineWidth = 2.0;
+      ctx.strokeStyle = 'black';
+
+      while (y < width){
+        while (x < width) {
+            var r = Math.floor(Math.random()*(255 + 1));
+            var g = Math.floor(Math.random()*(255 + 1));
+            var b = Math.floor(Math.random()*(255 + 1));
+            ctx.fillStyle = "rgba("+ r + ","+ g + "," + b +", 1)";
+            ctx.fillRect(x, y, sqSize, sqSize);
+            ctx.strokeRect(x,y,sqSize,sqSize);  
+            x = x + sqSize;
+        }
+        x = 0;
+        y = y + sqSize;
+      }
+    </script>
+  </body>
+</html>
