@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Svg Color</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <script type="text/javascript">
+      function drawSVG() {
+        var sqSize = 15;
+        var svgElement = document.getElementById('svgElement');
+        var square = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        square.setAttribute('width', sqSize );
+        square.setAttribute('height', sqSize );
+        square.setAttribute('fill', 'rgb(0,0,255)');
+        svgElement.appendChild(square);
+        
+      }
+
+    </script>
+  </head>
+  <body style="min-height: 100vh;" onload="drawSVG()">
+    
+    <svg height="200" width="200" id="svgElement">
+    </svg>
+  </body>
+</html>
