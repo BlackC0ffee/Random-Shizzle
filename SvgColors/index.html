@@ -7,22 +7,46 @@
     <!-- <link rel="stylesheet" href="style.css"> -->
 
     <script type="text/javascript">
-      function drawSVG() {
-        var sqSize = 15;
-        var svgElement = document.getElementById('svgElement');
+
+      function returnFloorValue(int, round) {
+        return Math.floor(int/round)*round
+      }
+
+      function drawSquare(x, y, sqSize, color) {
         var square = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        square.setAttribute('x', x );
+        square.setAttribute('y', y );
         square.setAttribute('width', sqSize );
         square.setAttribute('height', sqSize );
-        square.setAttribute('fill', 'rgb(0,0,255)');
-        svgElement.appendChild(square);
+        square.setAttribute('fill', color);
+        return square
+      }
+
+      function drawSVG(svgElement) {
+        var sqSize = 15;
+        width = returnFloorValue(svgElement.getAttribute('width'), sqSize);
+        height = returnFloorValue(svgElement.getAttribute('height'), sqSize);
+        var x = 0;
+        var y = 0; 
+        while (y < height){
+          while (x < width) {
+              var r = Math.floor(Math.random()*(255 + 1));
+              var g = Math.floor(Math.random()*(255 + 1));
+              var b = Math.floor(Math.random()*(255 + 1));
+              svgElement.appendChild(drawSquare(x,y,sqSize,"rgb("+ r + ","+ g + "," + b +")"));
+              x = x + sqSize;
+          }
+          x = 0;
+          y = y + sqSize;
+        }
         
       }
 
     </script>
   </head>
-  <body style="min-height: 100vh;" onload="drawSVG()">
+  <body style="min-height: 100vh;" onload="drawSVG(document.getElementById('svgElement'))">
     
-    <svg height="200" width="200" id="svgElement">
+    <svg height="200" width="300" id="svgElement">
     </svg>
   </body>
 </html>
